@@ -81,6 +81,13 @@ a {
   color: black;
 }
 
+.update {
+  color: blue;
+
+}
+.update:hover{
+  background-color: rgb(174, 174, 243);
+}
 #menu_span {
   position: fixed;
   top: 0;

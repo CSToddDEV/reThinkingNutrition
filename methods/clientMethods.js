@@ -173,7 +173,7 @@ function clientRecords(data, pool, res) {
 };
 
 function updateClientRecords(data, pool, res) {
-  //log data fro debug
+  //log data from debug
   console.log(data);
   title = "Update Client Records";
   action = "/updateClientRecords"
@@ -184,7 +184,10 @@ function updateClientRecords(data, pool, res) {
     console.log(response);
     if (!data.client_id) {
       returnData = databaseMethods.multipleNameRecords(response, action, data);
-      res.render('choices', returnData);
+      if(returnData==null)
+        res.render('norecordsfound');
+      else
+        res.render('choices', returnData);
     } else if (data["updateConfirmed"]) {
       sqlQuery = "Update Clients\
     SET fname = ?, lname = ?, phone = ?, email = ?, address = ?, city = ?\

@@ -96,6 +96,10 @@ function multipleNameRecords(res, action, data) {
       value: res[i]
     });
   }
+  if(res.length==0)
+  {
+    return null;
+  }
   returnData = {
     name: res[0]['First Name'] + " " + res[0]['Last Name'],
     keys: Object.keys(res[0]),
@@ -108,7 +112,7 @@ function multipleNameRecords(res, action, data) {
     time: 0,
     time_frame: 0,
     radio_client: 0,
-    cosnultation_id: 0
+    consultation_id: 0
   };
 
   if (data["consultations"]) {

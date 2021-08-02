@@ -275,6 +275,15 @@ app.get('/supplements', function(req, res) {
           input: '<form action="/addBrand"><label for="add_brand">Add the brand </label><input type="text" id="add_brand" name="add_brand" placeholder="Add Brand"><br><input type="submit" value="Add"></form><br<br>\
                         <form action="/removeBrand"><label for="remove_brand">Remove the brand </label><select class="brand" name="brand" required></select><br><input type="submit" value="Remove"></form>'
         }]
+      },
+
+      {
+        action: [{
+          question: 'View all supplements',
+          input: '<form action="/viewAllSupplements">\
+                      View all Supplements in a Table\
+                      <input type="submit" value="Submit""></form>'
+        }]
       }
 
     ]
@@ -337,6 +346,15 @@ app.get('/articles', function(req, res) {
           question: 'Remove an article from library',
           input: '<form action="/removeArticle"><label for="search">Search for Article to Remove: </label><input required type="text" id="search" name="search" placeholder="title or author"><br>\
         <input type="submit" value="Search"> </form>'
+        }]
+      },
+
+      {
+        action: [{
+          question: 'View all articles',
+          input: '<form action="/viewAllArticles">\
+                      View all Articles in a Table\
+                      <input type="submit" value="Submit""></form>'
         }]
       }
     ]
@@ -446,6 +464,10 @@ app.get('/removeArticle', function(req, res) {
   articleMethods.removeArticle(req.query, pool, res);
 });
 
+app.get('/viewAllArticles', function(req, res) {
+  articleMethods.viewAllArticles(req.query, pool, res);
+});
+
 app.get('/addSupplement', function(req, res) {
   supplementMethods.addSupplement(req.query, pool, res);
 });
@@ -468,6 +490,10 @@ app.get('/supplementsByCondition', function(req, res) {
 
 app.get('/supplementsByBrand', function(req, res) {
   supplementMethods.supplementsByBrand(req.query, pool, res);
+});
+
+app.get('/viewAllSupplements', function(req, res) {
+  supplementMethods.viewAllSupplements(req.query, pool, res);
 });
 
 app.get('/addCondition', function(req, res) {

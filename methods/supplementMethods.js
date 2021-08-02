@@ -180,9 +180,39 @@ function supplementsByBrand(data, pool, res) {
     })
 };
 
+
+function viewAllSupplements(data, pool, res) {
+  //log data for debug
+  console.log('inside viewAllSupplements method');
+  console.log(data);
+  pool.query(
+    "SELECT type, brand_name from Supplements JOIN Brands ON Supplements.brand_id = Brands.brand_id ORDER BY type;")
+    .then( response => {
+      console.log(response);    //Confirmation console logging for debug
+      let returnData = {};
+      let list = [];
+      for(var i=0; i<response.length; i++)
+      {
+        list.push(response[i]);
+      }
+      returnData.response = list;
+      res.render('viewallsupplements', returnData);
+    })
+    .catch( err => {                                                   //Error Catching
+      console.log("FAILED: Add Condition failed with error: " + err);
+    });
+
+  pool.release;
+
+  //Return failure or success
+  return true;
+
+};
+
 exports.addSupplement = addSupplement;
 exports.updateSupplement = updateSupplement;
 exports.addBrand = addBrand;
 exports.removeBrand = removeBrand;
 exports.supplementsByCondition = supplementsByCondition;
 exports.supplementsByBrand = supplementsByBrand;
+exports.viewAllSupplements = viewAllSupplements;

@@ -73,7 +73,7 @@ function articlesByCondition(data, pool, res) {
     })
     .catch(err => {
       console.log(err);
-      res.render('failure');
+      res.render('norecordsfound');
     })
 }
 
@@ -101,7 +101,7 @@ function articlesBySupplement(data, pool, res) {
     })
     .catch(err => {
       console.log(err);
-      res.render('failure');
+      res.render('norecordsfound');
     })
 }
 
@@ -283,8 +283,37 @@ function removeArticle(data, pool, res) {
     })
 }
 
+function viewAllArticles(data, pool, res) {
+  //log data for debug
+  console.log('inside viewAllArticles method');
+  console.log(data);
+  pool.query(
+    "SELECT * from Articles")
+    .then( response => {
+      console.log(response);    //Confirmation console logging for debug
+      let returnData = {};
+      let list = [];
+      for(var i=0; i<response.length; i++)
+      {
+        list.push(response[i]);
+      }
+      returnData.response = list;
+      res.render('viewallarticles', returnData);
+    })
+    .catch( err => {                                                   //Error Catching
+      console.log("FAILED: Add Condition failed with error: " + err);
+    });
+
+  pool.release;
+
+  //Return failure or success
+  return true;
+
+};
+
 exports.addArticle = addArticle;
 exports.articlesByCondition = articlesByCondition;
 exports.articlesBySupplement = articlesBySupplement;
 exports.updateArticle = updateArticle;
 exports.removeArticle = removeArticle;
+exports.viewAllArticles = viewAllArticles;

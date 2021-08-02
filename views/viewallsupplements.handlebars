@@ -6,7 +6,7 @@
 <p><br><br><br><br><br></p>
 <div class="response">
 {{!-- Create a table --}}
-<table id="view-all-conditions">
+<table id="view-all-supplements">
 
     {{!-- Header section --}}
     <thead>
@@ -14,11 +14,7 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-        {{#each response.[0]}}
-        <th>
-        {{@key}}
-        </th>
-        {{/each}}
+        <th>Supplement Type</th><th>Brand</th>
         </tr>
     </thead>
 
@@ -28,12 +24,11 @@
         {{!-- For each row, print the id, fname, lname, phone, email, address, city in order --}}
         {{#each response}}
         <tr>
-            <td>{{this.condition_id}}</td>
-            <td>{{this.condition_name}}</td>
-            <td><button><a href="/deleteConditionFromTable/{{this.condition_id}}">Delete</a></button></td>   
-             <td><a class='update'href="/updateConditionFromTable/{{this.condition_id}}">Update</a></td>
+            <td>{{this.type}}</td>
+            <td>{{this.brand_name}}</td>
         </tr>
         {{/each}}
+
     </tbody>
 </table>
 </div>

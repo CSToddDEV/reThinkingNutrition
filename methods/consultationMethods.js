@@ -22,7 +22,7 @@ function addConsultation(data, pool, res) {
       res.render('choices', returnData);
     } else { // just one client found with given first name and last name
       let client = response[0];
-      
+
       sqlQuery = "INSERT INTO Consultations (date, time, client_id)\
         VALUES (?, ?, ?);";
       pool.query(
@@ -78,15 +78,21 @@ function upcomingConsultations(data, pool, res) {
           timeFrame = '30';
         }
         sqlQuery = sqlQuery + "DATEDIFF(DATE_ADD(CURDATE(), INTERVAL + " + timeFrame + " DAY), date) >= 0 ";
+        if (data.radio_client == 'specific_client') {
+           sqlQuery = sqlQuery + " AND ";
+         }
       }
 
       if (data.time_frame == 'all_upcoming')
       {
         sqlQuery = sqlQuery + "date > CURDATE()";
+        if (data.radio_client == 'specific_client') {
+           sqlQuery = sqlQuery + " AND ";
+         }
       }
 
       if (data.radio_client == 'specific_client') {
-        sqlQuery = sqlQuery + " AND client_id = ? ";
+        sqlQuery = sqlQuery + " client_id = ? ";
         pool.query(
             sqlQuery,
             [data.client_id]

@@ -14,7 +14,7 @@ function addConsultation(data, pool, res) {
     {
       res.render('noclientfound');
     }
-    // else if (!data.client_id) { 
+    // else if (!data.client_id) {
     else if(response.length>1) // more than 1 client with same first and last name
     {
       returnData = databaseMethods.multipleNameRecords(response, action, data);
@@ -64,7 +64,7 @@ function upcomingConsultations(data, pool, res) {
         LEFT JOIN Clients\
         USING (client_id)"
 
-      if (data.time_frame != 'all_time')
+      if (data.time_frame != 'all_time' || data.radio_client != "specific_client")
       {
         sqlQuery = sqlQuery + " WHERE ";
       }
@@ -76,8 +76,7 @@ function upcomingConsultations(data, pool, res) {
         } else {
           timeFrame = '30';
         }
-        sqlQuery = sqlQuery + "DATEDIFF(DATE_ADD(CURDATE(), INTERVAL + " + timeFrame + " DAY), date) >= 0\
-          AND ";
+        sqlQuery = sqlQuery + "DATEDIFF(DATE_ADD(CURDATE(), INTERVAL + " + timeFrame + " DAY), date) >= 0 ";
       }
 
       if (data.time_frame == 'all_upcoming')

@@ -311,10 +311,11 @@ async function nameRecords(pool, data) {
   sqlQuery = "SELECT client_id AS 'Client ID', fname AS 'First Name', lname AS 'Last Name', phone AS 'Phone Number', email AS 'Email Address', address AS 'Street Address', city AS 'City' \
   FROM Clients cl\
   WHERE fname = ?\
-    AND lname = ?;\
+    AND lname = ?
     OR (client_id = ?);";
 
   return pool.query(
+    sqlQuery,
     [data.fname, data.lname, data.client_id]
   );
 };

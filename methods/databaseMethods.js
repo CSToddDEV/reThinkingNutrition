@@ -98,7 +98,7 @@ function multipleNameRecords(res, action, data) {
   }
   if(res.length==0)
   {
-    return returnData{results : "none"};
+    return returnData = {results : "none"};
   }
   returnData = {
     name: res[0]['First Name'] + " " + res[0]['Last Name'],

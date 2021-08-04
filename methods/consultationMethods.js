@@ -64,7 +64,7 @@ function upcomingConsultations(data, pool, res) {
         LEFT JOIN Clients\
         USING (client_id)"
 
-      if (data.time_frame != 'all_time' || data.radio_client != "specific_client")
+      if (data.time_frame != 'all_time' || data.radio_client == "specific_client")
       {
         sqlQuery = sqlQuery + " WHERE ";
       }
@@ -85,7 +85,7 @@ function upcomingConsultations(data, pool, res) {
       }
 
       if (data.radio_client == 'specific_client') {
-        sqlQuery = sqlQuery + " AND client_id = ?;";
+        sqlQuery = sqlQuery + " AND client_id = ? ";
         pool.query(
             sqlQuery,
             [data.client_id]

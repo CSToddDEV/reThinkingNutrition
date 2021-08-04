@@ -22,6 +22,7 @@ function addConsultation(data, pool, res) {
       res.render('choices', returnData);
     } else { // just one client found with given first name and last name
       let client = response[0];
+      
       sqlQuery = "INSERT INTO Consultations (date, time, client_id)\
         VALUES (?, ?, ?);";
       pool.query(

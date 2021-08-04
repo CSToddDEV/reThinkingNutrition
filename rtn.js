@@ -160,12 +160,13 @@ app.get('/consultations', function(req, res) {
 
       {
         action: [{
-          question: 'View my upcoming consultations',
+          question: 'View consultations',
           input: '<form action="/upcomingConsultations"><label for="radio_client">View consultations for: <br><br></label><input type="radio" name="radio_client" id="radio_client_single" value="specific_client"><label for="radio_client_single">A specific client: </label><br>\
                       <label for="fname">First Name: </label><input type="text" id="fname" name="fname" placeholder="First Name" value=""><br>\
                       <label for="lname">Last Name: </label><input type="text" id="lname" name="lname" placeholder="Last Name" value=""><br><br>\
                       <input required type="radio" name="radio_client" id="radio_client_all" value="all_clients"><label for="radio_client_all">All clients </label><br><br>\
-                      In the next <select name="time_frame" id="time_frame_consultation"><option value="2_weeks">2 Weeks</option><option value="1_month">1 Month</option><option value="all_upcoming">All Upcoming</option><option value="all_time">All Time</option></select>\
+                      Select time frame:<br>\
+                      <select name="time_frame" id="time_frame_consultation"><option value="2_weeks">Upcoming 2 Weeks</option><option value="1_month">Upcoming 1 Month</option><option value="all_upcoming">All Upcoming</option><option value="all_time">All Time</option></select>\
                       <input type="hidden" id="client_id" name="client_id" value="">\
                       <input type="submit" value="Submit"></form>'
         }]

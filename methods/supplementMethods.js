@@ -147,7 +147,7 @@ function supplementsByCondition(data, pool, res) {
         pool.release;
         res.render('choices', returnData);
       } else {
-        res.render('failure');
+        res.render('norecordsfound');
       }
     })
     .catch(err => {

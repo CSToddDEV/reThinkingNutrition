@@ -38,30 +38,36 @@ h1 {
 #consultations_span {
   position: fixed;
   top: -50%;
-  left: -100%;
+  left: -90%;
+  /* left: -120%;  */
 }
 
 #clients_span {
   position: fixed;
-  top: -115%;
-  left: 15%;
+  top: -100%;
+  /* top: -115%;  */
+  left: 20%;
+  /* left: 15%; */
 }
 
 #conditions_span {
   position: fixed;
   top: -50%;
-  left: 120%;
+  left: 110%;
+  /* left: 120%; */
 }
 
 #articles_span {
   position: fixed;
-  top: 100%;
+  /* top: 100%; */
+  top: 90%;
   left: -30%;
 }
 
 #supplements_span {
   position: fixed;
-  top: 100%;
+  /* top: 100% */
+  top: 90%;
   left: 70%;
 }
 
@@ -100,12 +106,16 @@ a {
   color: blue;
 }
 
-#about_page {
+.info_pages {
+  text-align: center;
+  font-size:1.5em;
   margin: 0% 30%;
   padding-top: 1%;
   padding-bottom: 1%;
   font-size: 1.25em;
 }
+
+
 
 #page_title {
   font-size: 5em;

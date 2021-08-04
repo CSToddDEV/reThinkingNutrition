@@ -6,16 +6,27 @@ function addConsultation(data, pool, res) {
   nameData = databaseMethods.nameRecords(pool, data);
   //Logic to check if there are multiple records returned
   nameData.then(response => {
-    if (!data.client_id) {
+    console.log('nameData', nameData);
+    console.log('data', data);
+    console.log('response', response);
+
+    if(response.length==0) // no client found
+    {
+      res.render('noclientfound');
+    }
+    // else if (!data.client_id) { 
+    else if(response.length>1) // more than 1 client with same first and last name
+    {
       returnData = databaseMethods.multipleNameRecords(response, action, data);
       pool.release;
       res.render('choices', returnData);
-    } else {
+    } else { // just one client found with given first name and last name
+      let client = response[0];
       sqlQuery = "INSERT INTO Consultations (date, time, client_id)\
         VALUES (?, ?, ?);";
       pool.query(
-          sqlQuery,
-          [data.date, data.time, data.client_id]
+          sqlQuery, [data.date, data.time, client.client_id]
+          // [data.date, data.time, data.client_id]
         )
         .then(response => {
           res.render('success');

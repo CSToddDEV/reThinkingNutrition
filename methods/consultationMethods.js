@@ -51,10 +51,14 @@ function upcomingConsultations(data, pool, res) {
       sqlQuery = "SELECT consultation_id AS 'Consultation ID', fname AS 'First Name', lname AS 'Last Name', date AS 'Date', time AS 'Time'\
         FROM Consultations\
         LEFT JOIN Clients\
-        USING (client_id)\
-        WHERE "
+        USING (client_id)"
 
-      if (data.time_frame != 'all_time') {
+      if (data.time_frame != 'all_time')
+      {
+        sqlQuery = sqlQuery + " WHERE ";
+      }
+
+      if (data.time_frame != 'all_time' && data.time_frame != 'all_upcoming') {
         var timeFrame
         if (data.time_frame == '2_weeks') {
           timeFrame = '14';
@@ -65,7 +69,10 @@ function upcomingConsultations(data, pool, res) {
           AND ";
       }
 
-      sqlQuery = sqlQuery + "date > CURDATE()"
+      if (data.time_frame == 'all_upcoming')
+      {
+        sqlQuery = sqlQuery + "date > CURDATE()";
+      }
 
       if (data.radio_client == 'specific_client') {
         sqlQuery = sqlQuery + " AND client_id = ?;";

@@ -308,10 +308,10 @@ async function dropDownList(pool, params) {
 
 async function nameRecords(pool, data) {
   //First call to check # of name Records
-  sqlQuery = "SELECT client_id AS 'Client ID', fname AS 'First Name', lname AS 'Last Name', phone AS 'Phone Number', email AS 'Email Address', address AS 'Street Address', city AS 'City' \
+  sqlQuery = "SELECT client_id AS 'Client ID', fname AS 'First Name', lname AS 'Last Name', phone AS 'Phone Number', email AS 'Email Address', address AS 'Street Address', city AS 'City'\
   FROM Clients cl\
   WHERE fname = ?\
-    AND lname = ?
+    AND lname = ?\
     OR (client_id = ?);";
 
   return pool.query(

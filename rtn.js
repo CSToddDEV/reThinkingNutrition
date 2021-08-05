@@ -235,8 +235,10 @@ app.get('/consultations', function(req, res) {
 
 app.get('/supplements', function(req, res) {
   renderData = {
+    title: 'Supplements',
     actions: [{
-        action: [{
+        action: [
+          {
           question: 'Add a new supplement',
           input: '<form action="/addSupplement"><label for="type">Supplement Type: </label><input required type="text" id="type" name="type" placeholder="Supplement Type"><br>\
                       <label for="brand">from the brand </label><select class="brand" name="brand"></select><br>\
@@ -289,6 +291,7 @@ app.get('/supplements', function(req, res) {
 
     ]
   };
+
   pageData = databaseMethods.addDropDowns(pool);
   pageData.then(conditions => {
     finalData = databaseMethods.formatDropDowns(renderData, conditions);
